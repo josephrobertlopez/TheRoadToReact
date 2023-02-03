@@ -1,10 +1,11 @@
 import * as React from 'react';
 
 const title = 'React';
-const welcome = {
-  greeting: 'Hey',
-  title: 'React',
-};
+
+const myArray = {
+  arr : [100, 9, 25],
+  op: Math.sqrt,
+}
 
 function getTitle(title){
   return title;
@@ -13,9 +14,7 @@ function getTitle(title){
 function App() {
   return (
     <div>
-      <h1>Hello {getTitle('React')}</h1>
-      <label htmlFor="search">Search:</label>
-      <input id = "search" type="text"/>
+    <h1>{myArray.arr.map(myArray.op)}</h1>
     </div>
   )
 }
