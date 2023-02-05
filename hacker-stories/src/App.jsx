@@ -1,6 +1,15 @@
 import * as React from 'react';
 
+const useStorageState = (key, initialState) => {
+  const [value, setValue] = React.useState(
+    localStorage.getItem(key) || initialState 
+  );
 
+  React.useEffect(() => {
+    localStorage.setItem(key,value);
+  },[value,key]);
+  return [value, setValue];
+};
 
 const App = () => {
   console.log('App renders');
@@ -21,14 +30,10 @@ const App = () => {
       objectID: 1
     },
   ]
-  const [searchTerm, setSearchTerm] = React.useState(
-    localStorage.getItem('search') || 'React');
+  const [searchTerm, setSearchTerm] = useStorageState('search','React');
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
-  React.useEffect(() => {
-    localStorage.setItem('search',searchTerm);
-  },[searchTerm]);
   // A
   const handleSearch = (event) => {
     // D
