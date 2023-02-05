@@ -22,20 +22,14 @@ function App() {
   return (
   <div>
   <h1>My Hacker Stories</h1>
-  <Search />
-  <hr />
+  {/* create an instance of List component */}
+  <List />
+  {/* create another instance of List component */}
   <List />
   </div>
   );
 }
-function Search(){
-  return (
-    <div>
-      <label htmlFor="search">Search: </label>
-      <input id="search" type="text" />
-    </div>
-  );
-}
+
 function List() {
   return (
     <ul>
