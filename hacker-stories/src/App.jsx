@@ -21,10 +21,14 @@ const App = () => {
       objectID: 1
     },
   ]
-  const [searchTerm, setSearchTerm] = React.useState('React');
+  const [searchTerm, setSearchTerm] = React.useState(
+    localStorage.getItem('search') || 'React');
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
+  React.useEffect(() => {
+    localStorage.setItem('search',searchTerm);
+  },[searchTerm]);
   // A
   const handleSearch = (event) => {
     // D
@@ -55,19 +59,20 @@ const Search = ({search, onSearch}) => (
 );
 const List = ({list}) => (
   <ul>
-    {list.map(({objectID, ...item}) => (
-      <Item key = {objectID} {...item} />
+    {
+      list.map((item) => (
+        <Item key={item.objectID} item={item} />
     ))}
   </ul>
 );
-const Item = ({title, url, author, num_comments, points}) => (
+const Item = ({item}) => (
   <li>
     <span>
-      <a href = {url}>{title}</a>
+      <a href = {item.url}>{item.title}</a>
     </span>
-    <span>{author}</span>
-    <span>{num_comments}</span>
-    <span>{points}</span>
+    <span>{item.author}</span>
+    <span>{item.num_comments}</span>
+    <span>{item.points}</span>
   </li>
 );
 export default App;
